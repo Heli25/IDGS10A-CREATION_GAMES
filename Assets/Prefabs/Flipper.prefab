@@ -106,10 +106,13 @@ EdgeCollider2D:
   - {x: -1.2085238, y: 1.408042}
   - {x: 1.4777043, y: -0.24253735}
   - {x: 1.602074, y: -0.3716903}
+  - {x: 1.6077641, y: -0.38355774}
   - {x: 1.6493247, y: -0.47023955}
   - {x: 1.6752696, y: -0.5947483}
+  - {x: 1.6752697, y: -0.59474844}
   - {x: 1.6537899, y: -0.7325893}
   - {x: 1.5872521, y: -0.8428048}
+  - {x: 1.5647045, y: -0.8609621}
   - {x: 1.5058188, y: -0.90838134}
   - {x: 1.3610895, y: -0.93401545}
   - {x: 1.1570369, y: -0.93032146}
@@ -164,8 +167,8 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -4.797, y: -3.708}
+  m_Anchor: {x: -0.58514196, y: 0.512883}
+  m_ConnectedAnchor: {x: -5.156599, y: -3.697209}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -173,4 +176,4 @@ HingeJoint2D:
   m_UseLimits: 1
   m_AngleLimits:
     m_LowerAngle: 0
-    m_UpperAngle: 90
+    m_UpperAngle: -70
