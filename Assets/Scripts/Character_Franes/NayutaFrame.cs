@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NayutaFrame : MonoBehaviour
 {
+    public Image Imagen;
     public GameObject popupWindow3;
-    private Frame frameInstance;
+    private AkiFrame akiframeInstance;
     private EternityFrame eternityframeInstance;
     private PowerFrame powerframeInstance;
     private DenjiFrame denjiframeInstance;
     
     void Start()
     {
-        frameInstance = FindObjectOfType<Frame>();
+        Imagen = GameObject.Find("PlayerSpawner").GetComponent<Image>();
+        akiframeInstance = FindObjectOfType<AkiFrame>();
         eternityframeInstance = FindObjectOfType<EternityFrame>();
         powerframeInstance = FindObjectOfType<PowerFrame>();
         denjiframeInstance = FindObjectOfType<DenjiFrame>();
@@ -22,7 +25,7 @@ public class NayutaFrame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            frameInstance.OnButtonClick();
+            akiframeInstance.OnButtonClick();
             eternityframeInstance.OnButtonClick2();
             powerframeInstance.OnButtonClick4();
             denjiframeInstance.OnButtonClick5();
@@ -32,10 +35,11 @@ public class NayutaFrame : MonoBehaviour
     public void OnButtonClick3()
     {
         popupWindow3.SetActive(true);
-        frameInstance.popupWindow.SetActive(false);
+        akiframeInstance.popupWindow.SetActive(false);
         eternityframeInstance.popupWindow2.SetActive(false);
         powerframeInstance.popupWindow4.SetActive(false);
         denjiframeInstance.popupWindow5.SetActive(false);
+        Imagen.sprite = Resources.Load<Sprite>("Personajes/nayuta");
     }
 
 }

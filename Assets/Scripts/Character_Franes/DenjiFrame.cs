@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DenjiFrame : MonoBehaviour
 {
-    private Frame frameInstance;
+    public Image Imagen;
+    private AkiFrame akiframeInstance;
     private EternityFrame eternityframeInstance;
     private NayutaFrame nayutaframeInstance;
     private PowerFrame powerframeInstance;
@@ -12,7 +14,9 @@ public class DenjiFrame : MonoBehaviour
 
     void Start()
     {
-        frameInstance = FindObjectOfType<Frame>();
+        Imagen = GameObject.Find("PlayerSpawner").GetComponent<Image>();
+
+        akiframeInstance = FindObjectOfType<AkiFrame>();
         eternityframeInstance = FindObjectOfType<EternityFrame>();
         nayutaframeInstance = FindObjectOfType<NayutaFrame>();
         powerframeInstance = FindObjectOfType<PowerFrame>();
@@ -22,7 +26,7 @@ public class DenjiFrame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            frameInstance.OnButtonClick();
+            akiframeInstance.OnButtonClick();
             eternityframeInstance.OnButtonClick2();
             nayutaframeInstance.OnButtonClick3();
             powerframeInstance.OnButtonClick4();
@@ -35,9 +39,11 @@ public class DenjiFrame : MonoBehaviour
         // Habilita el objeto de la segunda ventana emergente para que se muestre
         popupWindow5.SetActive(true);
         // Deshabilita el objeto de la primera ventana emergente para que se oculte
-        frameInstance.popupWindow.SetActive(false);
+        akiframeInstance.popupWindow.SetActive(false);
         eternityframeInstance.popupWindow2.SetActive(false);
         nayutaframeInstance.popupWindow3.SetActive(false);
         powerframeInstance.popupWindow4.SetActive(false);
+
+        Imagen.sprite = Resources.Load<Sprite>("Personajes/denji");
     }
 }

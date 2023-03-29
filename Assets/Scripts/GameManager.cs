@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 
     int score;
 
+    /*[SerializeField]
+    private float initialVelocity = 10f;*/
+
     [SerializeField]
     Rigidbody2D left, right;
 
@@ -19,7 +22,10 @@ public class GameManager : MonoBehaviour
 
     public int multiplier;
 
+    private Vector2 launchDirection;
+
     bool canPlay;
+    //bool ballLaunched = false;
 
     public static GameManager instance;
 
@@ -55,21 +61,28 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (!canPlay) return;
+        
+        /*if (!ballLaunched && Input.GetKeyDown(KeyCode.Space))
+        {
+            ballLaunched = true;
+            LaunchBall();
+        }*/
+
         if(Input.GetKey(KeyCode.A))
         {
-            left.AddTorque(25f);
+            left.AddTorque(90f);
         }
         else
         {
-            left.AddTorque(-20f);
+            left.AddTorque(-85f);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            right.AddTorque(-25f);
+            right.AddTorque(-90f);
         }
         else
         {
-            right.AddTorque(20f);
+            right.AddTorque(85f);
         }
 
     timeSinceLastTextChange += Time.deltaTime;
@@ -86,7 +99,6 @@ public class GameManager : MonoBehaviour
         multiplier += mullIncrease;
         score += point * multiplier;
         scoreText.GetComponent<TextMeshProUGUI>().text = " " + score;
-        ChangeText();
     }
 
     public void Pause()
@@ -132,6 +144,11 @@ public class GameManager : MonoBehaviour
         startButton.SetActive(false);
         scoreText.SetActive(true);
         Instantiate(ball, startPos, Quaternion.identity);
+        /*GameObject newBall = Instantiate(ball, startPos, Quaternion.identity);
+        Rigidbody2D ballRb = newBall.GetComponent<Rigidbody2D>();
+        ballRb.gravityScale = 0;
+        LaunchBall();
+        ballRb.AddForce(launchDirection * initialVelocity, ForceMode2D.Impulse);*/
         canPlay = true;
         ChangeText();
     }
@@ -154,4 +171,11 @@ public class GameManager : MonoBehaviour
         text.text = newText;
         Invoke("ChangeText", 5f);
     }
+
+   /*public void LaunchBall()
+    {
+        // lanzar la bola
+        Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
+        ballRb.velocity = new Vector2(0f, 25f);
+    }*/
 }

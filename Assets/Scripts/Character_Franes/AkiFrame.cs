@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Frame : MonoBehaviour
+public class AkiFrame : MonoBehaviour
 {
+    public Image Imagen;
+
     private EternityFrame eternityframeInstance;
     private NayutaFrame nayutaframeInstance;
     private PowerFrame powerframeInstance;
@@ -12,10 +15,13 @@ public class Frame : MonoBehaviour
 
     void Start()
     {
+        Imagen = GameObject.Find("PlayerSpawner").GetComponent<Image>();
+
         eternityframeInstance = FindObjectOfType<EternityFrame>();
         nayutaframeInstance = FindObjectOfType<NayutaFrame>();
         powerframeInstance = FindObjectOfType<PowerFrame>();
         denjiframeInstance = FindObjectOfType<DenjiFrame>();
+
     }
 
     void Update()
@@ -27,6 +33,7 @@ public class Frame : MonoBehaviour
             powerframeInstance.OnButtonClick4();
             denjiframeInstance.OnButtonClick5();
         }
+
     }
 
     public void OnButtonClick()
@@ -37,7 +44,10 @@ public class Frame : MonoBehaviour
         nayutaframeInstance.popupWindow3.SetActive(false);
         powerframeInstance.popupWindow4.SetActive(false);
         denjiframeInstance.popupWindow5.SetActive(false);
+
+        Imagen.sprite = Resources.Load<Sprite>("Personajes/aki");
     }
+
 }
 
 

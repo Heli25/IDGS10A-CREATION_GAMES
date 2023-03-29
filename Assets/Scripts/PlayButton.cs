@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayButton : MonoBehaviour
 {
-    [SerializeField] private string play = "Character";
+    [SerializeField] private string play = "Game";
 
     public void NewGameButton(){
         SceneManager.LoadScene(play);
