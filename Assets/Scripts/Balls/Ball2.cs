@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ball2 : MonoBehaviour
 {
+    public GameObject prefab;
+    public Sprite nuevaImagen;
+
     private Ball1 ball1Instance;
     private Ball3 ball3Instance;
     private Ball4 ball4Instance;
@@ -22,6 +26,10 @@ public class Ball2 : MonoBehaviour
 
     void Start()
     {
+        GameObject nuevoObjeto = Instantiate(prefab);
+        nuevaImagen = nuevoObjeto.GetComponent<SpriteRenderer>().sprite;
+        
+
         ball1Instance = FindObjectOfType<Ball1>();
         ball3Instance = FindObjectOfType<Ball3>();
         ball4Instance = FindObjectOfType<Ball4>();
@@ -77,5 +85,7 @@ public class Ball2 : MonoBehaviour
         ball13Instance.popupWindow13.SetActive(false);
         ball14Instance.popupWindow14.SetActive(false);
         ball15Instance.popupWindow15.SetActive(false);
+
+        nuevaImagen = Resources.Load<Sprite>("Bolas/ball2");
     }
 }

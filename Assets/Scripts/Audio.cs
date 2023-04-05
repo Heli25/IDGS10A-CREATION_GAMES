@@ -9,6 +9,7 @@ public class Audio : MonoBehaviour
     public Sprite sprite1;
     public Sprite sprite2;
     public AudioSource audioSource;
+    private static Audio instance;
 
     private bool isPaused = false;
 
@@ -17,6 +18,7 @@ public class Audio : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
        
     }
+
 
     void Update()
     {

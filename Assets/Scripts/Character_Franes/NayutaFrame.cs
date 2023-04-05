@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class NayutaFrame : MonoBehaviour
 {
@@ -11,10 +12,15 @@ public class NayutaFrame : MonoBehaviour
     private EternityFrame eternityframeInstance;
     private PowerFrame powerframeInstance;
     private DenjiFrame denjiframeInstance;
+    public TextMeshProUGUI text;
+
+    public string TextChange = "Reincarnated Demon";
     
     void Start()
     {
         Imagen = GameObject.Find("PlayerSpawner").GetComponent<Image>();
+        text = GameObject.Find("TextSpawner").GetComponent<TextMeshProUGUI>();
+
         akiframeInstance = FindObjectOfType<AkiFrame>();
         eternityframeInstance = FindObjectOfType<EternityFrame>();
         powerframeInstance = FindObjectOfType<PowerFrame>();
@@ -40,6 +46,7 @@ public class NayutaFrame : MonoBehaviour
         powerframeInstance.popupWindow4.SetActive(false);
         denjiframeInstance.popupWindow5.SetActive(false);
         Imagen.sprite = Resources.Load<Sprite>("Personajes/nayuta");
+        text.text = TextChange;
     }
 
 }

@@ -2,20 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EternityFrame : MonoBehaviour
 {
+
     public Image Imagen;
+    public GameObject popupWindow2;
+    public TextMeshProUGUI text;
 
     private AkiFrame akiframeInstance;
     private NayutaFrame nayutaframeInstance;
     private PowerFrame powerframeInstance;
     private DenjiFrame denjiframeInstance;
-    public GameObject popupWindow2;
+
+    public string TextChange = "Normal Demon";
 
     void Start()
     {
         Imagen = GameObject.Find("PlayerSpawner").GetComponent<Image>();
+        text = GameObject.Find("TextSpawner").GetComponent<TextMeshProUGUI>();
+
         akiframeInstance = FindObjectOfType<AkiFrame>();
         nayutaframeInstance = FindObjectOfType<NayutaFrame>();
         powerframeInstance = FindObjectOfType<PowerFrame>();
@@ -35,14 +42,15 @@ public class EternityFrame : MonoBehaviour
 
     public void OnButtonClick2()
     {
-        // Habilita el objeto de la segunda ventana emergente para que se muestre
         popupWindow2.SetActive(true);
-        // Deshabilita el objeto de la primera ventana emergente para que se oculte
         akiframeInstance.popupWindow.SetActive(false);
         nayutaframeInstance.popupWindow3.SetActive(false);
         powerframeInstance.popupWindow4.SetActive(false);
         denjiframeInstance.popupWindow5.SetActive(false);
 
         Imagen.sprite = Resources.Load<Sprite>("Personajes/eternidad");
+        text.text = TextChange;
+
     }
+
 }

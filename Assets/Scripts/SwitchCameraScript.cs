@@ -19,8 +19,8 @@ public class SwitchCameraScript : MonoBehaviour{
     private void Update() {
         // Verificar si la cámara 2 está activa
         if (camera2.isActiveAndEnabled) {
-        audio2.gameObject.SetActive(true); 
         audio1.gameObject.SetActive(false);
+        audio2.gameObject.SetActive(true); 
         }
     }
 

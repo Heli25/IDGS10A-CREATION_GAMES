@@ -2,19 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DenjiFrame : MonoBehaviour
 {
+
     public Image Imagen;
+    public GameObject popupWindow5;
+    public TextMeshProUGUI text;
+
     private AkiFrame akiframeInstance;
     private EternityFrame eternityframeInstance;
     private NayutaFrame nayutaframeInstance;
     private PowerFrame powerframeInstance;
-    public GameObject popupWindow5;
+
+    public string TextChange = "Hybrid Demon";
 
     void Start()
     {
         Imagen = GameObject.Find("PlayerSpawner").GetComponent<Image>();
+        text = GameObject.Find("TextSpawner").GetComponent<TextMeshProUGUI>();
 
         akiframeInstance = FindObjectOfType<AkiFrame>();
         eternityframeInstance = FindObjectOfType<EternityFrame>();
@@ -45,5 +52,6 @@ public class DenjiFrame : MonoBehaviour
         powerframeInstance.popupWindow4.SetActive(false);
 
         Imagen.sprite = Resources.Load<Sprite>("Personajes/denji");
+        text.text = TextChange;
     }
 }
