@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PowerFrame : MonoBehaviour
 {
@@ -11,10 +12,14 @@ public class PowerFrame : MonoBehaviour
     private NayutaFrame nayutaframeInstance;
     private DenjiFrame denjiframeInstance;
     public GameObject popupWindow4;
+    public TextMeshProUGUI text;
+
+    public string TextChange = "Fiend";
 
     void Start()
     {
         Imagen = GameObject.Find("PlayerSpawner").GetComponent<Image>();
+        text = GameObject.Find("TextSpawner").GetComponent<TextMeshProUGUI>();
         akiframeInstance = FindObjectOfType<AkiFrame>();
         eternityframeInstance = FindObjectOfType<EternityFrame>();
         nayutaframeInstance = FindObjectOfType<NayutaFrame>();
@@ -41,6 +46,7 @@ public class PowerFrame : MonoBehaviour
         nayutaframeInstance.popupWindow3.SetActive(false);
         denjiframeInstance.popupWindow5.SetActive(false);
         Imagen.sprite = Resources.Load<Sprite>("Personajes/power");
+        text.text = TextChange;
     }
 
 }

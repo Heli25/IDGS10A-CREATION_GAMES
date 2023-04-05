@@ -7,12 +7,15 @@ using TMPro;
 public class GameManager : MonoBehaviour   
 {
     [SerializeField]
-    GameObject ball,startButton,scoreText,menuButton,restartButton,pauseButton, resumeButton, pauseBackground;
+    public Rigidbody2D  pushbutton;
+
+    [SerializeField]
+    Camera mainCamera, camera2;
+
+    [SerializeField]
+    GameObject ball,startButton,scoreText,scoreText2,menuButton,restartButton,pauseButton, resumeButton, pauseBackground;
 
     int score;
-
-    /*[SerializeField]
-    private float initialVelocity = 10f;*/
 
     [SerializeField]
     Rigidbody2D left, right;
@@ -61,29 +64,33 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (!canPlay) return;
-        
-        /*if (!ballLaunched && Input.GetKeyDown(KeyCode.Space))
-        {
-            ballLaunched = true;
-            LaunchBall();
-        }*/
 
         if(Input.GetKey(KeyCode.A))
         {
-            left.AddTorque(90f);
+            left.AddTorque(200f);
         }
         else
         {
-            left.AddTorque(-85f);
+            left.AddTorque(-195f);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            right.AddTorque(-90f);
+            right.AddTorque(-200f);
+        }       
+        else
+        {
+            right.AddTorque(195f);
+        }
+
+        if(Input.GetKey(KeyCode.Space))
+        {
+            pushbutton.AddTorque(100f);//se cambia el valor para la fuerza
         }
         else
         {
-            right.AddTorque(85f);
+            pushbutton.AddTorque(-100f);
         }
+    
 
     timeSinceLastTextChange += Time.deltaTime;
     if (timeSinceLastTextChange >= textChangeInterval)
@@ -99,6 +106,7 @@ public class GameManager : MonoBehaviour
         multiplier += mullIncrease;
         score += point * multiplier;
         scoreText.GetComponent<TextMeshProUGUI>().text = " " + score;
+        scoreText2.GetComponent<TextMeshProUGUI>().text = "TOTAL SCORE: " + score;
     }
 
     public void Pause()
@@ -115,6 +123,7 @@ public class GameManager : MonoBehaviour
         restartButton.SetActive(true);
         resumeButton.SetActive(true);
         pauseBackground.SetActive(true);
+        scoreText2.SetActive(false);
         pauseBackground.transform.Find("GamePaused").GetComponent<TextMeshProUGUI>().enabled = true;
         pauseBackground.transform.Find("GameOver").GetComponent<TextMeshProUGUI>().enabled = false;
 
@@ -144,18 +153,20 @@ public class GameManager : MonoBehaviour
         startButton.SetActive(false);
         scoreText.SetActive(true);
         Instantiate(ball, startPos, Quaternion.identity);
-        /*GameObject newBall = Instantiate(ball, startPos, Quaternion.identity);
-        Rigidbody2D ballRb = newBall.GetComponent<Rigidbody2D>();
-        ballRb.gravityScale = 0;
-        LaunchBall();
-        ballRb.AddForce(launchDirection * initialVelocity, ForceMode2D.Impulse);*/
         canPlay = true;
         ChangeText();
     }
 
+
+
     public void GameRestart()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(4);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+
+        if (camera2 != null && camera2.isActiveAndEnabled) {
+        camera2.gameObject.SetActive(false); 
+    }
+        
     }
 
     public void GameQuit()
@@ -172,10 +183,5 @@ public class GameManager : MonoBehaviour
         Invoke("ChangeText", 5f);
     }
 
-   /*public void LaunchBall()
-    {
-        // lanzar la bola
-        Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
-        ballRb.velocity = new Vector2(0f, 25f);
-    }*/
+
 }

@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AkiFrame : MonoBehaviour
 {
+
     public Image Imagen;
+    public GameObject popupWindow;
+    public TextMeshProUGUI text;
 
     private EternityFrame eternityframeInstance;
     private NayutaFrame nayutaframeInstance;
     private PowerFrame powerframeInstance;
     private DenjiFrame denjiframeInstance;
-    public GameObject popupWindow;
+
+    public string TextChange = "";
 
     void Start()
     {
@@ -21,7 +26,6 @@ public class AkiFrame : MonoBehaviour
         nayutaframeInstance = FindObjectOfType<NayutaFrame>();
         powerframeInstance = FindObjectOfType<PowerFrame>();
         denjiframeInstance = FindObjectOfType<DenjiFrame>();
-
     }
 
     void Update()
@@ -33,12 +37,10 @@ public class AkiFrame : MonoBehaviour
             powerframeInstance.OnButtonClick4();
             denjiframeInstance.OnButtonClick5();
         }
-
     }
 
     public void OnButtonClick()
     {
-        // Habilita el objeto de la ventana emergente para que se muestre
         popupWindow.SetActive(true);
         eternityframeInstance.popupWindow2.SetActive(false);
         nayutaframeInstance.popupWindow3.SetActive(false);
@@ -46,9 +48,8 @@ public class AkiFrame : MonoBehaviour
         denjiframeInstance.popupWindow5.SetActive(false);
 
         Imagen.sprite = Resources.Load<Sprite>("Personajes/aki");
+        text.text = TextChange;
+
     }
 
 }
-
-
-
